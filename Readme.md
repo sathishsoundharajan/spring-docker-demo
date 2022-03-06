@@ -1,20 +1,30 @@
-Steps:
+## Running Spring Boot Application as Docker Container
 
-1. In Mac terminal run `./mvnw spring-boot:run`
-2. In another terminal run the below command
+1. ./mvnw package && java -jar target/demo-0.0.1-SNAPSHOT.jar
+1. docker build -t target/spring-boot-docker-api-0.0.1.jar . (OR) docker build -t spring-boot-docker-api.jar .
+2. docker run -p 8081:8080 spring-boot-docker-api
 
+## Steps to run grafana & prometheus:
+
+1. In Mac terminal run `./mvnw spring-boot:run` ( In Local Mac )
+2. In another terminal run the below command ( Running in docker container )
+
+```sh
 docker run --rm -p 9090:9090 \
   -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml \
   prom/prometheus:v2.20.1
+```
 
-3. In another terminal run the below command
+3. In another terminal run the below command ( Running in docker container )
 
+```sh
 docker run --rm -p 3000:3000 \
   -e GF_AUTH_DISABLE_LOGIN_FORM=true \
   -e GF_AUTH_ANONYMOUS_ENABLED=true \
   -e GF_AUTH_ANONYMOUS_ORG_ROLE=Admin \
   -v $(pwd)/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml \
   grafana/grafana:7.1.5
+```
 
 
 
