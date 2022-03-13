@@ -42,3 +42,7 @@ Postgres
 Docker Compose
 
 1. docker-compose up
+
+Maven Skip Test
+
+`./mvnw clean package -DskipTests`
