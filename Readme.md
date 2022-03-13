@@ -29,3 +29,16 @@ docker run --rm -p 3000:3000 \
 
 
 Note: the metrics path `http://localhost:8080/actuator/prometheus`
+
+
+
+Postgres 
+
+1. CREATE DATABASE dbuser;
+2. CREATE USER dbuser;
+3. GRANT ALL PRIVILEGES ON DATABASE spring_boot_demo TO dbuser;
+
+
+Docker Compose
+
+1. docker-compose up
