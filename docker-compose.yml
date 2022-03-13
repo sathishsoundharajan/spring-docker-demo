@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  db:
+    image: "postgres"
+    container_name: "database"
+    restart: always
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbuser
+      - POSTGRES_DB=spring_boot_demo
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - 5432:5432
+    volumes:
+      - ./docker-volume/postgres/data/:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/spring_boot_demo
+      - SPRING_DATASOURCE_USERNAME=dbuser
+      - SPRING_DATASOURCE_PASSWORD=dbuser
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
