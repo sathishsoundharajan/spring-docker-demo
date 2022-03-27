@@ -23,3 +23,14 @@ services:
       - 22
     environment:
      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDAnEiOyR5wEB9QpM0VzXL76s7hT0gdK/iTF6nu2/iVGBiIQLPfs2D83V+hlzs+ZAAyYDJqcayI/s9Oi6p+I7f5SklAecmb6+6RjCR/iH50B3DPSvw5N/mXXfjQVXCWMvIsuwEP9zRNLRbvvOklGNwqyMfToau89aTnaso5VG8yO99t7DKf/SEkHesN12wHueCUr1ftXFJbIP1lEld2EDFYhEU9l62/pLsW6it9vblsVgwZ/SsWo5K3xxi7tgJN1WwjJQIhvPc0+G+5pzywOlq+LX9YPg1GwIQD3Z1YTvcoRIMMmwVX8JiK+ibgTuOKexOENgJytvFV+DxIu/1qRc+J6OxCk67njZiw8LXSmBG+WLuFHu3w/YR7fIb3VQhE3TCFggQo66p+f2ZYP9avHAHB/JmrXu2e2xdNs5Us2O/Lmyy6Z14+Q24LqhRyEHfMIRppjCiWFDMDMDUfPi3ibvzcZex38hvjW6QdGLJO6rQta3pgPJieMG73CueoKXw72W8= ecom-sathish.sa@LT-SATHISH-SA-MAC.local
+  
+  localtunnel:
+    build:
+      context: .
+      dockerfile: Dockerfile-lt
+    links:
+      - jenkins
+    depends_on:
+      - jenkins
+    command:
+      --local-host jenkins --port 8080 --subdomain satzkr
