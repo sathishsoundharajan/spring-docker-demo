@@ -46,3 +46,11 @@ Docker Compose
 Maven Skip Test
 
 `./mvnw clean package -DskipTests`
+
+
+### Jenkins Setup
+
+1. Run `docker-compose -f docker-compose.build.yml up`
+2. Setup credentials `ssh-keygen -t rsa -f jenkins_agent`
+3. Add Credentials to scoped creds
+4. Add New Node
